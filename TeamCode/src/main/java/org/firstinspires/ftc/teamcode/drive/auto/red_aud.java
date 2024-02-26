@@ -20,15 +20,15 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Config
-@Autonomous(name="blue_aud", group="auto")
-public class blue_aud extends OpMode
+@Autonomous(name="red_aud", group="auto")
+public class red_aud extends OpMode
 {
 
     public static double x1 = -45;
     public static double y1 = -5;
     public static double h1 = 180;
-    public static double x2 = -50;
-    public static double y2 = -5;
+    public static double x2 = -40;
+    public static double y2 = 4;
     public static double h2 = 180;
     public static double x3 = -50;
     public static double y3 = -50;
@@ -45,8 +45,8 @@ public class blue_aud extends OpMode
 
     public SampleMecanumDrive drive;
 
-    DistanceSensor distance1;
-    DistanceSensor distance3;
+    DistanceSensor distance2;
+    DistanceSensor distance4;
 
     DcMotorEx intake;
     DcMotorEx lift1;
@@ -73,7 +73,7 @@ public class blue_aud extends OpMode
 
     public static double bPosx =.35 ;
 
-    public static double score = 550;
+    public static double score = 250;
 
 
 
@@ -103,8 +103,8 @@ public class blue_aud extends OpMode
         arm_encoder = hardwareMap.get(AnalogInput.class, "arm_encoder");
         outtake_lid = hardwareMap.get(Servo.class, "outtake_lid");
 
-        distance1 = hardwareMap.get(DistanceSensor.class, "distance1");
-        distance3 = hardwareMap.get(DistanceSensor.class, "distance3");
+        distance2 = hardwareMap.get(DistanceSensor.class, "distance2");
+        distance4 = hardwareMap.get(DistanceSensor.class, "distance4");
 
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -117,48 +117,48 @@ public class blue_aud extends OpMode
     @Override
     public void init_loop() {
 
-        if (distance1.getDistance(DistanceUnit.CM)<200) {
+        if (distance2.getDistance(DistanceUnit.CM)<200) {
             turn = 180;
 
 
             x1 = -40;
-            y1 = 4;
+            y1 = -12;
             h1 = 180;
-
+/*
             x4 = -30;
             y4 = -90;
             h4 = 270;
-
+*/
 
         }
-        else if (distance3.getDistance(DistanceUnit.CM)<200) {
+        else if (distance4.getDistance(DistanceUnit.CM)<200) {
             turn = 180;
 
-            x1 = -46;
-            y1 = -4.5;
+            x1 = -45;
+            y1 = 0;
             h1 = 180;
-
-            x4 = -26;
+/*
+            x4 = -25;
             y4 = -91;
             h4 = 270;
-
+*/
         }
         else {
 
-            turn = 90;
+            turn = -90;
 
-            x1 = -27;
-            y1 = -5;
-            h1 = 90;
-
+            x1 = -26;
+            y1 = 2;
+            h1 = 270;
+/*
             x4 = -29;
             y4 = -91;
             h4 = 260;
-
+*/
         }
 
-        telemetry.addData("distance3", distance3.getDistance(DistanceUnit.CM));
-        telemetry.addData("distance1", distance1.getDistance(DistanceUnit.CM));
+        telemetry.addData("distance2", distance2.getDistance(DistanceUnit.CM));
+        telemetry.addData("distance4", distance4.getDistance(DistanceUnit.CM));
         telemetry.update();
     }
 
