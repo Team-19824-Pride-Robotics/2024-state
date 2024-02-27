@@ -27,19 +27,19 @@ public class red_aud extends OpMode
     public static double x1 = -45;
     public static double y1 = -5;
     public static double h1 = 180;
-    public static double x2 = -40;
+    public static double x2 = -50;
     public static double y2 = 4;
     public static double h2 = 180;
     public static double x3 = -50;
-    public static double y3 = -50;
-    public static double h3 = 270;
-    public static double x4 = -32;
-    public static double y4 = -90;
-    public static double h4 = 270;
+    public static double y3 = 50;
+    public static double h3 = 90;
+    public static double x4 = 30;
+    public static double y4 = 90;
+    public static double h4 = 90;
 
     public static double x5 = -50;
-    public static double y5 = -90;
-    public static double h5 = 270;
+    public static double y5 = 90;
+    public static double h5 = 90;
 
     public static double turn = 180;
 
@@ -175,10 +175,11 @@ public class red_aud extends OpMode
                 .addTemporalMarker(() -> intake.setPower(-0.6))
                 .waitSeconds(1)
                 .addTemporalMarker(() -> intake.setPower(0))
-                .forward(5)
+                .forward(10)
                 .lineToLinearHeading(new Pose2d(x2, y2, Math.toRadians(h2)))
-                .turn(Math.toRadians(90))
+                .turn(Math.toRadians(-90))
                 .lineToLinearHeading(new Pose2d(x3, y3, Math.toRadians(h3)))
+                /*
                 .addTemporalMarker(() -> {
                     target = 500;
                 })
@@ -214,7 +215,7 @@ public class red_aud extends OpMode
                 .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(x5, y5, Math.toRadians(h5)))
 
-
+*/
                 .build();
 
         drive.followTrajectorySequenceAsync(trajSeq);
