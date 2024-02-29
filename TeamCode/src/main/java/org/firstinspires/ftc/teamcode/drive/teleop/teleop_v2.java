@@ -98,7 +98,7 @@ public class teleop_v2 extends LinearOpMode {
     ArrayList<Boolean> booleanArray = new ArrayList<Boolean>();
     int boolean_incrementer = 0;
 
-    double rightrigger =0;
+    double rightrigger = 0;
 
 
 
@@ -148,9 +148,9 @@ public class teleop_v2 extends LinearOpMode {
         wPos = 0;
         outtake_lid.setPosition(out_open);
 
-        //initialize the pincers to the "open" position
-        pincer_left.setPosition(left_open);
-        pincer_right.setPosition(right_open);
+        //initialize the pincers to the "closed" position
+        pincer_left.setPosition(left_closed);
+        pincer_right.setPosition(right_closed);
 
         waitForStart();
 
@@ -290,8 +290,17 @@ public class teleop_v2 extends LinearOpMode {
             }
 
             if(gamepad2.left_trigger > 0.1) {
-                pincer_left.setPosition(left_open);
-                pincer_right.setPosition(right_open);
+                if (gamepad2.y) {
+                    resetRuntime();
+                    while (getRuntime() < pince_time) {
+                        pincer_left.setPosition(left_closed);
+                        pincer_right.setPosition(right_closed);
+                    }
+                }
+                else {
+                    pincer_left.setPosition(left_open);
+                    pincer_right.setPosition(right_open);
+                }
             }
 
 
