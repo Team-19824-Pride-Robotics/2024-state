@@ -33,15 +33,16 @@ public class red_aud extends OpMode
     public static double x3 = -55;
     public static double y3 = 50;
     public static double h3 = 100;
-    public static double x4 = -38;
-    public static double y4 = 86;
-    public static double h4 = 100;
+    public static double x4 = -62;
+    public static double y4 = 83;
+    public static double h4 = 110;
 
     public static double x5 = -50;
     public static double y5 = 85;
     public static double h5 = 100;
 
     public static double turn = 180;
+    public static double turn2 = -85;
 
     public SampleMecanumDrive drive;
 
@@ -119,42 +120,61 @@ public class red_aud extends OpMode
 
         if (distance2.getDistance(DistanceUnit.CM)<200) {
             turn = 180;
-
+            turn = -90;
 
             x1 = -40;
             y1 = -12;
             h1 = 180;
-/*
+
+             x3 = -55;
+            y3 = 50;
+            h3 = 100;
+
             x4 = -30;
             y4 = -90;
             h4 = 270;
-*/
+
+            x5 = -50;
+
 
         }
         else if (distance4.getDistance(DistanceUnit.CM)<200) {
             turn = 180;
-
+            turn2 = -90;
             x1 = -45;
             y1 = 2;
             h1 = 180;
-/*
+
+             x3 = -55;
+            y3 = 50;
+            h3 = 100;
+
             x4 = -25;
             y4 = -91;
             h4 = 270;
-*/
+
+            x5= -50;
+
         }
         else {
 
             turn = -90;
+            turn2 = -80;
 
             x1 = -26;
             y1 = 2;
             h1 = 270;
-/*
-            x4 = -29;
-            y4 = -91;
-            h4 = 260;
-*/
+
+            x3 = -60;
+            y3 = 50;
+            h3 = 100;
+
+            x4 = -60;
+            y4 = 81;
+            h4 = 110;
+
+            x5 = -65;
+
         }
 
         telemetry.addData("distance2", distance2.getDistance(DistanceUnit.CM));
@@ -177,7 +197,7 @@ public class red_aud extends OpMode
                 .addTemporalMarker(() -> intake.setPower(0))
                 .forward(10)
                 .lineToLinearHeading(new Pose2d(x2, y2, Math.toRadians(h2)))
-                .turn(Math.toRadians(-90))
+                .turn(Math.toRadians(turn2))
                 .lineToLinearHeading(new Pose2d(x3, y3, Math.toRadians(h3)))
 
                 .addTemporalMarker(() -> {

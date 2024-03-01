@@ -107,9 +107,9 @@ public class teleop_v2 extends LinearOpMode {
     public void runOpMode() {
 
         //initialize the outtake to be ready for pixels
-        target = lift_intake;
-        aPos = arm_intake;
-        bPosx = bucket_intake;
+        target = 0;
+        //aPos = arm_intake;
+        //bPosx = bucket_intake;
 
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -149,8 +149,8 @@ public class teleop_v2 extends LinearOpMode {
         outtake_lid.setPosition(out_open);
 
         //initialize the pincers to the "closed" position
-        pincer_left.setPosition(left_closed);
-        pincer_right.setPosition(right_closed);
+       // pincer_left.setPosition(left_closed);
+       // pincer_right.setPosition(right_closed);
 
         waitForStart();
 
@@ -293,8 +293,8 @@ public class teleop_v2 extends LinearOpMode {
                 if (gamepad2.y) {
                     resetRuntime();
                     while (getRuntime() < pince_time) {
-                        pincer_left.setPosition(left_closed);
-                        pincer_right.setPosition(right_closed);
+                        pincer_left.setPosition(left_closed-0.11);
+                        pincer_right.setPosition(right_closed-0.12);
                     }
                 }
                 else {
